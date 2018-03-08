@@ -89,3 +89,32 @@ def around_info(soup):
     else:
         return("error")
 
+def all_house_type_link(soup):
+    house_type_url_txt_f=open('./house_type_url_txt','a')
+    for tag in soup.find_all('a',class_='look-more'):
+        print >>house_type_url_txt_f,"%s"%(tag.get('href'))
+    house_type_url_txt_f.close()
+
+def house_type_info(soup):
+    for tag in soup.find_all('span',class_='type'):
+        global house_type
+        house_type=tag.get_text()
+    
+    for tag in soup.find_all('img',class_='thumb'):
+        global house_type_pic_link
+        house_type_pic_link=tag.get('src')
+
+    return("%s*%s"%(house_type,house_type_pic_link))
+
+def house_properties(soup):
+    house_property_keys = []
+    for tag in soup.find_all('span',class_='key'):
+        house_property_keys.append(tag.get_text())
+    
+    house_property_values = []
+    for tag in soup.find_all('span',class_='value'):
+        house_property_values.append(tag.get_text())
+    
+    house_properties=map(lambda(a,b):a+b,zip(house_property_keys,house_property_values))
+    str_house_properties = '*'.join(house_properties)
+    return(str_house_properties)
