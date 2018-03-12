@@ -33,7 +33,7 @@ with open('./land_agent_url_txt') as fd:
         b=price_update_time(GetHtml(url.replace(".html","/ht.html")))#报价更新时间
         c=detail_info(GetHtml(url.replace(".html","/details.html")))#最新开盘,最早交房,产权年限
         d=around_info(GetHtml(url.replace(".html","/su.html")))#周边环境
-        print >>land_agent_detail_info_f,"%s*%s*%s%s*%s"%(url.strip("\n"),a,b,c,d)
+        print >>land_agent_detail_info_f,"%s*%s*%s*%s*%s"%(url.strip("\n"),a,b,c,d)
 land_agent_detail_info_f.close()
 
 

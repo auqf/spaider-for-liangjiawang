@@ -52,10 +52,10 @@ def start_time(soup):
 def price_update_time(soup):
     for tag in soup.find_all('div',class_='td'):
         if re.match(u"报价更新时间",tag.get_text()):
-            return(tag.get_text())
+            return(tag.get_text().replace("报价更新时间：","")
             break
-        else:
-            return("No_Price_Update_Time")
+        #else:
+        #    return("No_Price_Update_Time")
 
 def detail_info(soup):
     a=[]#the latest opening
