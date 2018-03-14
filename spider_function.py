@@ -14,7 +14,7 @@ def pagination_info(area_url,start_p,end_p):
     update_date=[]
     for url in all_land_agent_links:
         soup=GetHtml(url)
-        for tag in GetHtml(url).find_all('a', class_='name project-card-item'):
+        for tag in soup.find_all('a', class_='name project-card-item'):
             land_agent.append((tag.get_text()+"*").strip("\n"))
             land_agent_url.append((tag.get('href')).strip("\n"))
 
